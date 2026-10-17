@@ -5,6 +5,62 @@
         <div class="col-10">
             <h2 class="text-primary">Zombies by type</h2>
         </div>
+        @* 1.Ajouter le conteneur Accordion *@ @* Ce conteneur va regrouper toutes les sections de ton accordéon. *@
+        <div class="accordion" id="zombieAccordion">
+        @* 2. Ajouter le foreach, crée une section pour chaque type de zombie. *@
+            @foreach (var zombieType in Model)
+            {
+                <div class="accordion-item">
+                    @* 3.Ajouter le bouton pour ouvrir et fermer *@
+                    <h2 class="accordion-header"> @* Crée le bouton de l'accordéon. *@
+                        <button class="accordion-button collapsed" @* Le bouton commence fermé. *@
+                                type="button"
+                                data-bs-toggle="collapse" @* Permet d'ouvrir et fermer la section. *@
+                                data-bs-target="@("#Id" + zombieType.Id)" @* Indique quelle section ouvrir (Le Id doit etre ecrit pareil en bas =Id etap 4 *@
+                                aria-expanded="false"
+                                aria-controls="@("Id" + zombieType.Id)">
+                            @zombieType.TypeName @* affiche le nom du type de zombie. *@
+                        </button>
+                    </h2>
+                    @* 4.Ajouter la section qui s'ouvre *@
+                    <div id="@("Id" + zombieType.Id)" @* Id pareil que contenteditable=" haut *@
+                         class="accordion-collapse collapse"
+                         data-bs-parent="#zombieAccordion">
+
+                        <div class="accordion-body">
+                            @* Afficher les zombies a l'interieur du accordion body *@
+                            <div class="row">
+                                @foreach (var zombie in zombieType.Zombies)
+                                {
+                                   @*  <div class="card border m-3 text-center bg-warning"
+                                         style="width: 20rem; background-image: url('/images/imagesLayout/Fond.png');">
+
+                                        <div class="card-body text-warning">
+                                            <h3 class="card-title">@zombie.Name</h3>
+                                            <h5>Points: @zombie.Point</h5>
+                                        </div>
+
+                                    </div>
+                                }
+
+                                @if (zombieType.Zombies.Count == 0)
+                                {
+                                    <span class="text-danger">
+                                        Aucun Zombie pour ce type
+                                    </span> *@
+
+                                    @* Puisque tu as déjà créé _ZombieCard.cshtml, tu peux réutiliser cette vue partielle à la place du HTML de chaque carte : *@
+                                    <partial name="_ZombieCard" model="zombie" />
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
     </div>
 
     @foreach (var zombieType in Model)

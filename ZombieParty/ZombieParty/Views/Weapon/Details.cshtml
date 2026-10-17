@@ -1,0 +1,16 @@
+﻿@model ZombieParty.Models.Weapon
+
+<h2>Weapon Details</h2>
+
+<div class="card p-3">
+    <h4>@Model.Name</h4>
+
+    <p>Description: @Model.Description</p>
+    <p>Force: @Model.Force</p>
+    <p>Price: @Model.Price</p>
+    <p>Quantity: @Model.Qty</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">
+    Back to List
+</a>

@@ -58,5 +58,55 @@ namespace ZombieParty.Controllers
 
             return this.View(weapon);
         }
+
+
+        //Pour voir detail des Weapon 1. Ajouter view dans weapon apres
+        // GET DETAILS
+        public IActionResult Details(int id)
+        {
+            Weapon? weapon = _baseDonnees.Weapons.Find(id);
+
+            if (weapon == null)
+            {
+                return NotFound();
+            }
+
+            return View(weapon);
+        }
+
+
+        //Pour que le lien delete fonctionne. Create view delete aussi
+        public IActionResult Delete(int id)
+        {
+            Weapon? weapon = _baseDonnees.Weapons.Find(id);
+
+            if (weapon == null)
+            {
+                return NotFound();
+            }
+
+            return View(weapon);
+        }
+
+        //Pour actually le delete
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int id)
+        {
+            Weapon? weapon = _baseDonnees.Weapons.Find(id);
+
+            if (weapon == null)
+            {
+                return NotFound();
+            }
+
+            _baseDonnees.Weapons.Remove(weapon);
+            _baseDonnees.SaveChanges();
+
+            TempData["Success"] = $"{weapon.Name} weapon deleted";
+
+            return RedirectToAction("Index");
+        }
     }
 }
