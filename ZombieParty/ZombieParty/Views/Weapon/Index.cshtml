@@ -68,9 +68,12 @@
                     @Html.DisplayFor(modelItem => item.QtyBought)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Upsert", new { id=item.WeaponId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.WeaponId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.WeaponId })
+                    @* @Html.ActionLink("Edit", "Upsert", new { id=item.WeaponId }) | *@
+                    <a asp-action="Upsert" asp-route-Id="@item.WeaponId"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                    @* @Html.ActionLink("Details", "Details", new { id=item.WeaponId }) | *@
+                    <a asp-action="Details" asp-route-Id="@item.WeaponId"><i class="fa-solid fa-circle-info"></i> Details</a>
+                   @*  @Html.ActionLink("Delete", "Delete", new { id=item.WeaponId }) *@
+                    <a asp-action="Delete" asp-route-Id="@item.WeaponId"><i class="fa-solid fa-trash"></i> Delete</a>
                 </td>
             </tr>
         }

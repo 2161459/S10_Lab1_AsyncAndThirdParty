@@ -60,17 +60,26 @@
                         <span asp-validation-for="@Model.Zombie.ZombieTypeId" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row form-group">
+               @*  <div class="row form-group">
                     <div class="col-4"> </div>
                     <div class="col-4">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Create" class="btn btn-success"/>
+                    </div> *@
+
+                    @* Ajouter le create button avec +. Create UTILISER BUTTON/> *@
+                <div class="row form-group">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-success w-100"><i class="fa-solid fa-plus"></i> Create</button>
                     </div>
+                </div>
+                </form>
                     <div class="col-4">
                     <a class="btn btn-secondary" asp-action="Index">Back to List</a>
                     </div>
                 </div>
 
-            </form>
+            
         </div>
     </div>
 </div>
